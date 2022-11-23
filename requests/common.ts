@@ -7,4 +7,4 @@ export const client = new Axios({
     baseURL: "https://api.vk.com/method/",
 });
 
-export const defaultParams = {v: '', userId: LESYA_ID};
+export const defaultParams = {v: process.env.V, userId: LESYA_ID};
