@@ -1,3 +1,3 @@
 import {messagesSend} from "../requests/messagesSend";
 
-await messagesSend('в бой');
+await messagesSend({message: 'в бой', accessToken: ""});
