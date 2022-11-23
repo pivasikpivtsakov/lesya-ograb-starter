@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "^18.9.0"
+  },
   "scripts": {
     "start": "nodemon --experimental-specifier-resolution=node index.ts",
     "soloFight": "nodemon --experimental-specifier-resolution=node tasks/soloFight.ts",

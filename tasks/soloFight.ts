@@ -1,3 +1,3 @@
-import {messagesSend} from "../requests/messagesSend";
+import {messagesSendMany} from "../requests/messagesSend";
 
-await messagesSend({message: 'в бой', accessToken: ""});
+await messagesSendMany({message: 'бой'});
