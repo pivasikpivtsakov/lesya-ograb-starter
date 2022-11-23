@@ -1,5 +1,5 @@
 import Hapi from "@hapi/hapi";
-import controllers from "./controllers";
+import routes from "./routes";
 
 
 const init = async () => {
@@ -9,10 +9,8 @@ const init = async () => {
     });
 
     // rest
-    for (const controller of controllers) {
-        for (const route of controller) {
-            server.route(route);
-        }
+    for (const route of routes) {
+        server.route(route);
     }
 
     await server.start();
