@@ -1,5 +1,6 @@
 import Hapi from "@hapi/hapi";
 import routes from "./routes";
+import {pgClient} from "./models/dbclient";
 
 
 const init = async () => {
@@ -12,6 +13,10 @@ const init = async () => {
     for (const route of routes) {
         server.route(route);
     }
+
+    // postgres
+    await pgClient.connect();
+    console.log('postgres connected');
 
     await server.start();
     return server;
