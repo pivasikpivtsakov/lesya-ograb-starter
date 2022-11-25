@@ -38,3 +38,5 @@ export const runForManyTokens = async (func: requestFunc, funcParams: object, to
     }
     return allRunsResult;
 };
+
+export const delay = ms => new Promise(resolve => setTimeout(resolve, ms));

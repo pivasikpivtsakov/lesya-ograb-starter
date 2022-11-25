@@ -10,6 +10,7 @@
   "scripts": {
     "start": "nodemon --experimental-specifier-resolution=node index.ts",
     "soloFight": "nodemon --experimental-specifier-resolution=node tasks/soloFight.ts",
+    "ograbItems": "nodemon --experimental-specifier-resolution=node tasks/ograbStart.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

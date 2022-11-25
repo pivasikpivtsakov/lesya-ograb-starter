@@ -1,5 +1,4 @@
 import {client, defaultParams, runForManyTokens} from "./common";
-import {getTokens} from "../models/tokens";
 
 
 function getRandomInt() {
@@ -17,4 +16,8 @@ export const messagesSend = async ({ message, accessToken }) => {
         });
 };
 
-export const messagesSendMany = async ({message,}) => runForManyTokens(messagesSend, {message}, await getTokens());
+interface MessagesSendManyParams {
+    message:string, tokens:string[],
+}
+
+export const messagesSendMany = async ({message, tokens}: MessagesSendManyParams) => runForManyTokens(messagesSend, {message}, tokens);
