@@ -3,5 +3,7 @@ import {pgClient} from "../models/dbclient";
 import {getTokens} from "../models/tokens";
 
 
-await pgClient.connect();
-await messagesSendMany({message: 'бой', tokens: await getTokens()});
+export default async () => {
+    await pgClient.connect();
+    await messagesSendMany({message: 'бой', tokens: await getTokens()});
+};
