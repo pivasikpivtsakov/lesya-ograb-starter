@@ -1,2 +1,2 @@
 web: npm start
-clock: npm cronJobs
+clock: npm run cronJobs
