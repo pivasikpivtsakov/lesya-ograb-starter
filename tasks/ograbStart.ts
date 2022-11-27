@@ -5,6 +5,7 @@ import {delay} from "../requests/common";
 
 
 export default async () => {
+    console.log('ograbstart running')
     await pgClient.connect();
     const pivasikToken = await getTokensByOwners(['pivasik']);
 
