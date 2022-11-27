@@ -1,6 +1,6 @@
 import {pgPool} from "./dbclient";
 
-export const getTokens = async () => {
+export const getAllTokens = async () => {
     const result = await pgPool.query('select token from tokens');
     return result.rows.map(x => x.token);
 }

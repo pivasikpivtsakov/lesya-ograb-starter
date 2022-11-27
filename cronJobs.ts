@@ -6,15 +6,15 @@ import openCases from "./tasks/openCases";
 
 const every10Mins = '*/10 * * * *';
 schedule(every10Mins, now => {
-    soloFight().then(console.log);
+    soloFight().then(_ => {});
 });
 
 const onceADayAt18 = '0 18 * * *';
 schedule(onceADayAt18, now => {
-    ograbStart().then(console.log);
+    ograbStart().then(_ => {});
 });
 
 const every30Mins = '*/30 * * * *';
 schedule(every30Mins, now => {
-    openCases().then(console.log);
+    openCases().then(_ => {});
 });
