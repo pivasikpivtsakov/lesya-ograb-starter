@@ -17,7 +17,8 @@ export const messagesSend = async ({ message, accessToken }) => {
 };
 
 interface MessagesSendManyParams {
-    message:string, tokens:string[],
+    message: string,
+    tokens: string[],
 }
 
 export const messagesSendMany = async ({message, tokens}: MessagesSendManyParams) => runForManyTokens(messagesSend, {message}, tokens);

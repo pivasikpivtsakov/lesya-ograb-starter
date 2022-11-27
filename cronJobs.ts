@@ -2,19 +2,19 @@ import {schedule} from "node-cron";
 import soloFight from "./tasks/soloFight";
 import ograbStart from "./tasks/ograbStart";
 import openCases from "./tasks/openCases";
+import buildCity from "./tasks/buildCity";
 
+
+const scheduleFunc = (cronTime: string, func: () => Promise<any>) =>
+    schedule(cronTime, () => {
+        func().then(_ => {});
+    })
 
 const every10Mins = '*/10 * * * *';
-schedule(every10Mins, now => {
-    soloFight().then(_ => {});
-});
+const every20Mins = '*/20 * * * *';
+const onceAnHour = '40 * * * *';
 
-const onceADayAt18 = '0 18 * * *';
-schedule(onceADayAt18, now => {
-    ograbStart().then(_ => {});
-});
-
-const every30Mins = '*/30 * * * *';
-schedule(every30Mins, now => {
-    openCases().then(_ => {});
-});
+scheduleFunc(every10Mins, soloFight);
+scheduleFunc(onceAnHour, ograbStart);
+scheduleFunc(every10Mins, openCases);
+scheduleFunc(every20Mins, buildCity);
