@@ -1,10 +1,10 @@
 import pg from "pg";
 
-const {Client} = pg;
+const {Pool} = pg;
 
 
 const connectionString = process.env.DATABASE_URL;
-export const pgClient = new Client({
+export const pgPool = new Pool({
     connectionString, ssl: {
         rejectUnauthorized: false
     }
