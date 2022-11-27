@@ -7,4 +7,5 @@ export default async () => {
     console.log('solofight running')
     await pgClient.connect();
     await messagesSendMany({message: 'бой', tokens: await getTokens()});
+    await pgClient.end();
 };

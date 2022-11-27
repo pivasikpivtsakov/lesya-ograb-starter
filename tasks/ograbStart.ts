@@ -13,4 +13,5 @@ export default async () => {
         await messagesSendMany({message: `предмет ${i}`, tokens: pivasikToken});
         await delay(500);
     }
+    await pgClient.end();
 };

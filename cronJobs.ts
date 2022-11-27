@@ -14,7 +14,7 @@ schedule(onceADayAt18, now => {
     ograbStart().then(console.log);
 });
 
-const every30Mins = '*/10 * * * *';
+const every30Mins = '*/30 * * * *';
 schedule(every30Mins, now => {
     openCases().then(console.log);
 });
