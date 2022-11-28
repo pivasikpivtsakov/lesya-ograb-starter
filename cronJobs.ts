@@ -16,5 +16,5 @@ const onceAnHour = '40 * * * *';
 
 scheduleFunc(every10Mins, soloFight);
 scheduleFunc(onceAnHour, ograbStart);
-scheduleFunc(every10Mins, openCases);
+scheduleFunc(every20Mins, openCases);
 scheduleFunc(every20Mins, buildCity);
