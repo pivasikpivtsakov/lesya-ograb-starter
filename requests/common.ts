@@ -1,7 +1,10 @@
 import {Axios, AxiosResponse} from "axios";
+import {TokenTableRow} from "../models/tokens";
 
 
 const LESYA_ID = -158861435;
+
+const TOKEN_ERROR_CODE = 5;
 
 export const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
@@ -31,11 +34,12 @@ interface RequestFuncParams {
 }
 type requestFunc = ({accessToken}: RequestFuncParams) => Promise<AxiosResponse>;
 
-export const runForManyTokens = async (func: requestFunc, funcParams: object, tokens: string[]) => {
+export const runForManyTokens = async (func: requestFunc, funcParams: object, tokens: TokenTableRow[]) => {
     const allRunsResult = await Promise.allSettled(
-        tokens.map(
-            token => func({accessToken: token, ...funcParams})
-        )
+        tokens.map(async tokenRow => {
+            const funcResult = await func({accessToken: tokenRow.token, ...funcParams});
+            return {...funcResult, tokenOwner: tokenRow.owner};
+        })
     );
     for (const runResult of allRunsResult) {
         if (runResult.status === "rejected") {
@@ -43,7 +47,10 @@ export const runForManyTokens = async (func: requestFunc, funcParams: object, to
             console.error(runResult.reason);
         } else if (runResult.status === "fulfilled") {
             if (runResult.value.data['error']) {
-                console.error('call is rejected by vk server');
+                console.error(`call is rejected by vk server`);
+                if (runResult.value.data['error']['error_code'] == TOKEN_ERROR_CODE) {
+                    console.error(`failed token is by ${runResult.value.tokenOwner}`);
+                }
                 console.error(runResult.value.data['error']);
             } else if (runResult.value.data['response']) {
                 console.log('run succeded');
