@@ -20,3 +20,13 @@ export async function getTokensByOwners(owners: string[]): Promise<TokenTableRow
         owner: x.owner,
     }));
 }
+
+export async function putTokens(tokenRows: TokenTableRow[]) {
+    return await Promise.all(
+        tokenRows.map(tokenRow =>
+            pgPool.query(
+                'insert into tokens (token, owner) values ($1, $2)',
+                [tokenRow.token, tokenRow.owner])
+        )
+    );
+}

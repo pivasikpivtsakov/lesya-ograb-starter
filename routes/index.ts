@@ -1,4 +1,5 @@
 import {Lifecycle, RouteOptions, ServerRoute, Util} from "@hapi/hapi"
+import {putTokens} from "../models/tokens";
 
 
 class Route implements ServerRoute {
@@ -23,9 +24,11 @@ class Route implements ServerRoute {
 
 export default [
     new Route(
-        "POST", '/vk-tokens/', (request, h, err) => {
-            // тут может быть ручка для добавления токенов в базу
-            return 'ok'
+        "POST", '/vk-tokens/', async (request, h, err) => {
+            const tokenTableRow = {token: request.payload['token'], owner: request.payload['owner']};
+            await putTokens([tokenTableRow]);
+
+            return 'ok';
         }
     ),
 ]
