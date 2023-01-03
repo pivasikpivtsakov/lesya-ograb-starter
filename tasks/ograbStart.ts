@@ -1,6 +1,6 @@
 import {messagesSendMany} from "../requests/messagesSend";
 import {getTokensByOwners} from "../models/tokens";
-import {delay} from "../requests/common";
+import {delay} from "../requests/delays";
 
 
 export default async () => {

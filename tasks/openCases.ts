@@ -1,6 +1,7 @@
 import {messagesSendMany} from "../requests/messagesSend";
 import {getAllTokens} from "../models/tokens";
-import {delay} from "../requests/common";
+import {delay} from "../requests/delays";
+
 
 export default async () => {
     console.log('opencases started')

@@ -1,13 +1,8 @@
-import {client, defaultParams, runForManyTokens} from "./common";
+import {client, defaultParams, getRandomIntFull, runForManyTokens} from "./common";
 
-
-function getRandomInt() {
-    const INT32 = 2147483647;
-    return Math.floor(Math.random() * INT32);
-}
 
 export const messagesSend = async ({ message, accessToken }) => {
-    const guid = getRandomInt();
+    const guid = getRandomIntFull();
     return await client.post(
         'messages.send',
         null,
