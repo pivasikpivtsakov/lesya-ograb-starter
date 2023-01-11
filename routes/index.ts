@@ -1,5 +1,5 @@
 import {Lifecycle, RouteOptions, ServerRoute, Util} from "@hapi/hapi"
-import {putTokens} from "../models/tokens";
+import {deleteTokensByOwner, getAllTokensSafe, putTokens} from "../models/tokens";
 
 
 class Route implements ServerRoute {
@@ -24,11 +24,29 @@ class Route implements ServerRoute {
 
 export default [
     new Route(
-        "POST", '/vk-tokens/', async (request, h, err) => {
+        "PUT", '/vk-tokens/', async (request, h, err) => {
             const tokenTableRow = {token: request.payload['token'], owner: request.payload['owner']};
-            await putTokens([tokenTableRow]);
+            try {
+                await putTokens([tokenTableRow]);
+            } catch (e) {
+                console.error(e);
+            }
+
 
             return 'ok';
+        }
+    ),
+    new Route(
+        "DELETE", '/vk-tokens/', async (request, h, err) => {
+            const owners = request.payload['owner'];
+            await deleteTokensByOwner(owners);
+
+            return 'ok';
+        }
+    ),
+    new Route(
+        "GET", '/vk-tokens/safe/', async (request, h, err) => {
+            return await getAllTokensSafe();
         }
     ),
 ]
