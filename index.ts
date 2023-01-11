@@ -8,9 +8,7 @@ const init = async () => {
         host: '0.0.0.0',
         routes: {
             cors: {
-                origin: process.env['ENVIRONMENT'] === 'DEVELOPMENT'
-                    ? ['*']
-                    : [process.env['FRONT_HOST']],
+                origin: ['*']
             },
         }
     });

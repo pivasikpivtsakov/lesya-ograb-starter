@@ -46,7 +46,8 @@ export default [
     ),
     new Route(
         "GET", '/vk-tokens/safe/', async (request, h, err) => {
-            return await getAllTokensSafe();
+            const tokensResult = await getAllTokensSafe();
+            return {tokenReprs: tokensResult};
         }
     ),
 ]

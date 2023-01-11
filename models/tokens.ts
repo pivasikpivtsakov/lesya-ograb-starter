@@ -23,7 +23,7 @@ export async function getTokensByOwners(owners: string[]): Promise<TokenTableRow
 }
 
 export async function getAllTokensSafe(): Promise<SafeTokenTableRow[]> {
-    const result = await pgPool.query('select token, owner, id from tokens')
+    const result = await pgPool.query('select token, owner, id from tokens order by id')
     return result.rows.map(x => _.pick(x, ['owner', 'id']))
 }
 
