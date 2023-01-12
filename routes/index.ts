@@ -21,6 +21,7 @@ class Route implements ServerRoute {
     }
 }
 
+const success = {sucksass: true};
 
 export default [
     new Route(
@@ -32,16 +33,14 @@ export default [
                 console.error(e);
             }
 
-
-            return 'ok';
+            return success;
         }
     ),
     new Route(
         "DELETE", '/vk-tokens/', async (request, h, err) => {
-            const owners = request.payload['owner'];
-            await deleteTokensByOwner(owners);
-
-            return 'ok';
+            const owner = request.payload['owner'];
+            await deleteTokensByOwner(owner);
+            return success;
         }
     ),
     new Route(

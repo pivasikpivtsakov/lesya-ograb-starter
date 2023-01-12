@@ -37,6 +37,6 @@ export async function putTokens(tokenRows: TokenTableRow[]) {
     )
 }
 
-export async function deleteTokensByOwner(owners: string[]) {
-    return pgPool.query('delete from tokens where owner = any ($1)', [owners])
+export async function deleteTokensByOwner(owner: string) {
+    return pgPool.query('delete from tokens where owner = any ($1)', [[owner]])
 }
